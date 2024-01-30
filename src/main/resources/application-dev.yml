@@ -4,3 +4,26 @@ server:
       charset: utf-8
       force: true
   port: 8080
+#db 커넥션
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=MySQL
+    username: sa
+    password:
+
+#콘솔 url활성 h2없으면 web접근 불가
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+    show-sql: true # NONE을 하면 테이블이 사라진다.
+
+    properties: #쿼리보기 편하게 하기
+      hibernate:
+        format_sql: true
+
