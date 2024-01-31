@@ -25,6 +25,8 @@ public class UserController {
     private final HttpSession session;
 
 
+
+
 //    public UserController(UserRepository userRepository) { //IoC컨테이너에서 찾으니 있음
 //        System.out.println("풀 생성자 userController");
 //        this.userRepository = userRepository;
@@ -64,9 +66,17 @@ public class UserController {
             return "error/400";
         }
 
-        //2. MODEL에게 위임하기
+        //2. 동일 username 체크 (나중에 하나의 트랜잭션으로 해주는게 좋다)
+        User user = userRepository.findByUsername(requestDTO.getUsername());
+        if (user == null){
+            userRepository.save(requestDTO);
+        }else {
+            return "error/400";
+        }
 
-        userRepository.save(requestDTO);
+        //3. MODEL에게 위임하기
+
+
 
         return "redirect:/loginForm";
     }
@@ -88,6 +98,7 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout() {
+        session.invalidate(); //서랍을 날려버림
         return "redirect:/";
     }
 }

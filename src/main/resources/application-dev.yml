@@ -25,6 +25,11 @@ spring:
     console:
       enabled: true
 
+  sql:
+    init:
+      data-locations:
+        - classpath:db/data.sql
+
   jpa:
     hibernate:
       ddl-auto: create
@@ -34,4 +39,6 @@ spring:
     properties: #쿼리보기 편하게 하기
       hibernate:
         format_sql: true
+
+    defer-datasource-initialization: true
 

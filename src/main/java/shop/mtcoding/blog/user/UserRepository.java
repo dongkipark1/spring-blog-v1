@@ -15,7 +15,7 @@ public class UserRepository { //UserRepository가 new가 된다
         this.em = em;
     }
 
-    @Transactional
+    @Transactional  // 다른 메서드를 호출 할 일이 없어서 독립적인 트랜잭션으로 건다
     public void save(UserRequest.JoinDTO requestDTO){
        Query query = em.createNativeQuery("insert into user_tb(username, password, email) values(?, ?, ?)");
        query.setParameter(1 , requestDTO.getUsername());
@@ -40,6 +40,18 @@ public class UserRepository { //UserRepository가 new가 된다
         Query query = em.createNativeQuery("select * from user_tb where username=? and password=?", User.class);
         query.setParameter(1 , requestDTO.getUsername());
         query.setParameter(2 , requestDTO.getPassword());
+
+        try {
+            User user = (User) query.getSingleResult(); // 내가 만든 코드가 아님 직접 try ~ catch 해야
+            return user;
+        }catch (Exception e){
+            return null;
+        } // 내부적으로 터지면 찾아야 한다
+    }
+
+    public User findByUsername(String username) {
+        Query query = em.createNativeQuery("select * from user_tb where username=? and password=?", User.class);
+        query.setParameter(1 , username);
 
         try {
             User user = (User) query.getSingleResult(); // 내가 만든 코드가 아님 직접 try ~ catch 해야
