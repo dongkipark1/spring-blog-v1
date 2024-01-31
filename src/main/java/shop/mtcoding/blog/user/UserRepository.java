@@ -41,7 +41,11 @@ public class UserRepository { //UserRepository가 new가 된다
         query.setParameter(1 , requestDTO.getUsername());
         query.setParameter(2 , requestDTO.getPassword());
 
-        User user = (User) query.getSingleResult();
-        return user;
+        try {
+            User user = (User) query.getSingleResult(); // 내가 만든 코드가 아님 직접 try ~ catch 해야
+            return user;
+        }catch (Exception e){
+            return null;
+        } // 내부적으로 터지면 찾아야 한다
     }
 }
