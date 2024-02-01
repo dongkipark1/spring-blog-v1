@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user_tb") //테이블 명 정하는것
 public class User {
-    @Id
+    @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO INCREMENT
     private int id;
 
@@ -20,6 +20,7 @@ public class User {
     @Column(length = 60, nullable = false) // 제약조건을 어노테이션으로 걸어준다
     private String password;
     private String email;
+
 
     @CreationTimestamp
     private LocalDateTime createdAt;
