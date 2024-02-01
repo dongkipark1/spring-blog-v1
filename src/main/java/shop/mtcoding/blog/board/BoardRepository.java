@@ -3,6 +3,7 @@ package shop.mtcoding.blog.board;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 import org.springframework.stereotype.Repository;
+import shop.mtcoding.blog._core.Constant;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -26,7 +27,7 @@ public class BoardRepository {
        int value = page*COUNT;
        Query query = em.createNativeQuery("select * from board_tb order by id desc limit ?,?", Board.class);
        query.setParameter(1, value);
-       query.setParameter(2, COUNT);
+       query.setParameter(2, Constant.PAGING_COUNT);
 
        List<Board> boardList = query.getResultList();
        return boardList;
