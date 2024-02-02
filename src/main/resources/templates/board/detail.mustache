@@ -2,12 +2,14 @@
 
 <div class="container p-5">
 
+    {{#owner}}
     <!-- 수정삭제버튼 -->
     <div class="d-flex justify-content-end">
         <button class="btn btn-warning me-1">수정</button>
         <button class="btn btn-danger">삭제</button>
     </div>
-
+    {{/owner}}
+<!--    true일때 보이고 false 일때 안보임 조건이 필요 세션이 있으면 로그인이 됨 게시물 id = 세션 정보 id true 아니면 false-->
     <div class="d-flex justify-content-end mt-2">
         <b>작성자</b> : {{board.username}}
     </div>

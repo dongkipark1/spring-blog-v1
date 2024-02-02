@@ -15,7 +15,7 @@ public class BoardResponse {
         private String content;
         private String title;
         private Timestamp createdAt;
-        private Integer userId;
+        private Integer userId; // 작성자 ID
         private String username;
 
     }

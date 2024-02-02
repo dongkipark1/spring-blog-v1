@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     private final UserRepository userRepository; // null
+    // IOC 컨테이너에 세션에 접근할 수 있는 변수가 들어가 있음. 의존성주입 하면 됨
     private final HttpSession session;
 
 
