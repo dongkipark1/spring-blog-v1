@@ -1,14 +1,14 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.14'
+	id 'org.springframework.boot' version '3.2.2'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'org.jetbrains.kotlin.jvm'
 }
 
 group = 'shop.mtcoding'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '11'
 }
 
 configurations {
@@ -22,6 +22,9 @@ repositories {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/org.qlrm/qlrm
+	implementation group: 'org.qlrm', name: 'qlrm', version: '4.0.1'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -31,8 +34,12 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+kotlin {
+	jvmToolchain(21)
 }
